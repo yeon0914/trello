@@ -1,4 +1,5 @@
 import * as api from '../api'
+import state from './state';
 
 const actions = {
   ADD_BOARD(_, { title }) {
@@ -21,6 +22,16 @@ const actions = {
   ADD_CARD({ dispatch, state }, { title, listId, pos }) {
     return api.card.create(title, listId, pos)
       .then(() => dispatch('FETCH_BOARD', { id: state.board.id }))
+  },
+  FETCH_CARD({ commit }, { id }) {
+    return api.card.fetch(id).then(data => {
+      commit('SET_CARD', data.item)
+    })
+  },
+  UPDATE_CARD({ dispatch, state }, { id, title, description, pos, listId }) {
+    return api.card.update(id, { title, description, pos, listId })
+      .then(() => dispatch('FETCH_BOARD', { id: state.board.id }))
   }
+
 }
 export default actions
