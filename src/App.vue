@@ -1,26 +1,25 @@
 <template>
   <div id="app">
-    <Navbar />
+    <Navbar />    
     <router-view class="container"></router-view>
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue";
+import Navbar from './components/Navbar.vue'
+
 export default {
+  name: 'app',
   components: { Navbar },
-  name: "app",
-  compoents: { Navbar },
-  data() {
-    return {};
+  data () {
+    return {
+    }
   }
-};
+}
 </script>
 
 <style>
-html,
-body,
-#app {
+html, body, #app {
   height: 100%;
   margin: 0px;
 }
@@ -40,7 +39,7 @@ body,
   display: inline-block;
   color: #fff;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 20px;  
   font-weight: 700;
   cursor: pointer;
 }
@@ -48,7 +47,7 @@ body,
   background-color: #5aac44;
   box-shadow: 0 1px 0 #519839;
 }
-.font-control {
+.form-control {
   width: 100%;
   box-sizing: border-box;
   background-color: #e2e4e6;
@@ -57,10 +56,10 @@ body,
   display: block;
   margin-bottom: 12px;
   padding: 6px 8px;
-  transition: background-color 0.3s;
+  transition: background-color .3s;
 }
-input[type="text"].form-control,
-input[type="password"].form-control,
+input[type=text].form-control,
+input[type=password].form-control,
 textarea.form-control {
   font-size: 14px;
 }

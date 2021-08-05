@@ -1,22 +1,23 @@
 <template>
-  <div class="card-item">
+  <div class="card-item" :data-card-id="data.id" :data-card-pos="data.pos">
     <router-link :to="`/b/${boardId}/c/${data.id}`">
-      <div>{{ data.title }}</div>
+      <div>{{data.title}}</div>
       <div class="card-item-meta" v-if="data.description">&equiv;</div>
     </router-link>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import {mapState} from 'vuex'
+
 export default {
-  props: ["data"],
+  props: ['data'],
   computed: {
     ...mapState({
-      boardId: state => state.board.id
+      'boardId': state => state.board.id
     })
   }
-};
+}
 </script>
 
 <style>
@@ -38,13 +39,13 @@ export default {
 }
 .card-item:hover,
 .card-item:focus {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0,0,0, .1);
   cursor: pointer;
 }
 .card-item-meta {
   font-size: 26px;
   padding: 5px 0 0 3px;
-  color: #8c8c8c;
+  color: #8c8c8c;  
 }
 .delete-card-btn {
   position: absolute;
