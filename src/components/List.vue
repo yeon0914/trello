@@ -1,7 +1,8 @@
 <template>
   <div class="list" :data-list-id="data.id" >
     <div class="list-header">
-      <div class="list-header-title">{{data.title}}</div>
+      <input v-if="isEditTitle" class="form-control input-title" type="text" ref="inputTitle" v-model="inputTitle" @blur="onSubmitTitle" @keyup.enter="onSubmitTitle">
+      <div v-else class="list-header-title" @click.prevent="onClickTitle">{{data.title}}</div>
     </div>
 
     <div class="card-list" :data-list-id="data.id">
@@ -20,18 +21,42 @@
 </template>
 
 <script>
-import AddCard from './AddCard.vue'
-import CardItem from './CardItem.vue'
+import AddCard from "./AddCard.vue";
+import CardItem from "./CardItem.vue";
+import { mapActions } from "vuex";
 
 export default {
-  components: {AddCard, CardItem},
-  props: ['data'],
+  components: { AddCard, CardItem },
+  props: ["data"],
   data() {
     return {
-      isAddCard: false
+      isAddCard: false,
+      isEditTitle: false,
+      inputTitle: ""
+    };
+  },
+  created() {
+    this.inputTitle = this.data.title;
+  },
+  methods: {
+    ...mapActions(["UPDATE_LIST"]),
+    onClickTitle() {
+      this.isEditTitle = true;
+      this.$nextTick(() => this.$refs.inputTitle.focus());
+    },
+    onSubmitTitle() {
+      this.isEditTitle = false;
+      this.inputTitle = this.inputTitle.trim();
+      if (!this.inputTitle) return;
+
+      const id = this.data.id;
+      const title = this.inputTitle;
+      if (title == this.data.title) return;
+
+      this.UPDATE_LIST({ id, title });
     }
   }
-}
+};
 </script>
 
 <style>
@@ -73,10 +98,10 @@ export default {
   overflow-y: scroll;
   min-height: 10px;
 }
-.empty-card-item   {
+.empty-card-item {
   height: 10px;
   width: 100%;
-  background-color: rgba(0,0,0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
 .add-card-btn {
   flex: 0 0 auto;
@@ -87,6 +112,6 @@ export default {
 }
 .add-card-btn:focus,
 .add-card-btn:hover {
-  background-color: rgba(0,0,0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 </style>
