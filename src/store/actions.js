@@ -22,9 +22,16 @@ const actions = {
   DELETE_BOARD(_, { id }) {
     return api.board.destroy(id)
   },
-  UPDATE_BOARD({dispatch, state}, { id, title, bgColor }) {
-    return api.board.update(id, { title, bgColor }).then(()=>dispatch('FETCH_BOARD', {id: state.board.id}))
+  UPDATE_BOARD({ dispatch, state }, { id, title, bgColor }) {
+    return api.board.update(id, { title, bgColor }).then(() => dispatch('FETCH_BOARD', { id: state.board.id }))
   },
+
+
+  ADD_LIST({ state, dispatch }, { title, boardId, pos }) {
+    return api.list.create({ title, pos, boardId })
+      .then(_ => dispatch('FETCH_BOARD', { id: state.board.id }))
+  },
+
 
 
   ADD_CARD({ dispatch, state }, { title, listId, pos }) {
