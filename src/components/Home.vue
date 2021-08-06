@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import {mapState, mapMutations, mapActions} from 'vuex'
-import AddBoard from './AddBoard.vue'
+import { mapState, mapMutations, mapActions } from "vuex";
+import AddBoard from "./AddBoard.vue";
 
 export default {
   components: {
@@ -29,38 +29,35 @@ export default {
   data() {
     return {
       loading: false,
-      error: ''
-    }
+      error: ""
+    };
   },
   computed: {
     ...mapState({
-      isAddBoard: 'isAddBoard',
-      boards: 'boards'
+      isAddBoard: "isAddBoard",
+      boards: "boards"
     })
   },
   created() {
-    this.fetchData()
+    this.fetchData();
+    this.SET_THEME();
   },
   updated() {
     this.$refs.boardItem.forEach(el => {
-      el.style.backgroundColor = el.dataset.bgcolor
-    })
+      el.style.backgroundColor = el.dataset.bgcolor;
+    });
   },
   methods: {
-    ...mapMutations([
-      'SET_IS_ADD_BOARD'
-    ]),
-    ...mapActions([
-      'FETCH_BOARDS'
-    ]),
+    ...mapMutations(["SET_IS_ADD_BOARD", "SET_THEME"]),
+    ...mapActions(["FETCH_BOARDS"]),
     fetchData() {
-      this.loading = true
-      this.FETCH_BOARDS().finally(_=> {
-        this.loading = false
-      })
-    },
+      this.loading = true;
+      this.FETCH_BOARDS().finally(_ => {
+        this.loading = false;
+      });
+    }
   }
-}
+};
 </script>
 
 <style>
@@ -91,7 +88,7 @@ export default {
 }
 .board-item a:hover,
 .board-item a:focus {
-  background-color: rgba(0,0,0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
   color: #666;
 }
 .board-item-title {

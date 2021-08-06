@@ -11,30 +11,40 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations} from 'vuex'
+import { mapGetters, mapMutations, mapState } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters([
-      'isAuth'
-    ]),
+    ...mapGetters(["isAuth"]),
+    ...mapState({ bodyColor: "bodyColor", navbarColor: "navbarColor" })
+  },
+  watch: {
+    bodyColor: "updateTheme"
+  },
+  mounted() {
+    this.updateTheme();
   },
   methods: {
-    ...mapMutations([
-      'LOGOUT'
-    ]),
+    ...mapMutations(["LOGOUT"]),
     logout() {
-      this.LOGOUT()
-      this.$router.push('/login')
+      this.LOGOUT();
+      this.$router.push("/login");
+    },
+    updateTheme() {
+      this.$el.style.backgroundColor = this.navbarColor;
+      const container = document.querySelector(".container");
+      if (container) container.style.backgroundColor = this.bodyColor;
+      const body = document.querySelector("body");
+      if (body) body.style.backgroundColor = this.bodyColor;
     }
   }
-}
+};
 </script>
 
 <style>
 .header {
   flex: none;
-  background-color: rgba(0,0,0,.15);
+  background-color: rgba(0, 0, 0, 0.15);
   height: 32px;
   padding: 4px;
 }
@@ -43,7 +53,7 @@ export default {
   height: 30px;
   line-height: 30px;
   text-decoration: none;
-  color: rgba(255,255,255,.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 .header-logo {
   position: absolute;
@@ -56,7 +66,7 @@ export default {
 }
 .header-logo a:hover,
 .header-logo a:focus {
-  color: rgba(255,255,255,.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 .header-auth {
   position: absolute;
@@ -66,12 +76,12 @@ export default {
 .header-auth a {
   border-radius: 2px;
   padding: 0 10px;
-  background-color: rgba(255,255,255, .5);
+  background-color: rgba(255, 255, 255, 0.5);
   color: white;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 .header-auth a:hover,
 .header-auth a:focus {
-  background-color: rgba(255,255,255, .3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 </style>
