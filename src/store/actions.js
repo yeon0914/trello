@@ -18,6 +18,9 @@ const actions = {
       commit('SET_BOARD', data.item)
     })
   },
+  DELETE_BOARD(_, { id }) {
+    return api.board.destroy(id)
+  },
 
   ADD_CARD({ dispatch, state }, { title, listId, pos }) {
     return api.card.create(title, listId, pos)
@@ -34,7 +37,8 @@ const actions = {
   },
   DELETE_CARD({ state, dispatch }, { id }) {
     return api.card.destroy(id).then(_ => dispatch('FETCH_BOARD', { id: state.board.id }))
-  }
+  },
+
 
 }
 
