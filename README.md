@@ -1,6 +1,5 @@
-# vue-trello
-
-> A Vue.js project
+# trello
+trello clone coding using vue.js
 
 ## Build Setup
 
@@ -16,3 +15,6 @@ npm run build
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## trello server
+https://github.com/jeonghwan-kim/lecture-vue-trello-server
