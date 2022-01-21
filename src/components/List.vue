@@ -66,7 +66,7 @@ export default {
 
 <style>
 .list {
-  background-color: #e2e4e6;
+  background-color: white;
   border-radius: 3px;
   margin-right: 10px;
   display: flex;

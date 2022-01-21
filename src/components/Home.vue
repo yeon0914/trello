@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="home-title">Personal Boards</div>
+    <div class="home-title"></div>
     <div class="board-list" ref="boardList">
       <div class="board-item" v-for="b in boards" :key="b.id" 
         :data-bgcolor="b.bgColor" ref="boardItem">
@@ -75,7 +75,7 @@ export default {
   width: 23%;
   height: 100px;
   margin: 0 2% 20px 0;
-  border-radius: 3px;
+  border-radius: 15px;
 }
 .board-item-new {
   background-color: #ddd;

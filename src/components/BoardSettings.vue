@@ -8,10 +8,10 @@
       <li><a href="" @click.prevent="onDeleteBoard">Delete Board</a></li>
       <li>Change Background</li>
       <div class="color-picker">
-        <a href="" data-value="rgb(0,121,191)" @click.prevent="onChangeTheme"></a>
-        <a href="" data-value="rgb(210,144,52)" @click.prevent="onChangeTheme"></a>
-        <a href="" data-value="rgb(81,152,57)" @click.prevent="onChangeTheme"></a>
-        <a href="" data-value="rgb(176,70,50)" @click.prevent="onChangeTheme"></a>
+        <a href="" data-value="#026178" @click.prevent="onChangeTheme"></a>
+        <a href="" data-value="#41C8E5" @click.prevent="onChangeTheme"></a>
+        <a href="" data-value="#9A75F0" @click.prevent="onChangeTheme"></a>
+        <a href="" data-value="#8E9EEB" @click.prevent="onChangeTheme"></a>
       </div>
       
     </ul>

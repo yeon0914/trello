@@ -6,20 +6,21 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
+import Navbar from "./components/Navbar.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: { Navbar },
-  data () {
-    return {
-    }
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <style>
-html, body, #app {
+html,
+body,
+#app {
   height: 100%;
   margin: 0px;
 }
@@ -39,7 +40,7 @@ html, body, #app {
   display: inline-block;
   color: #fff;
   font-size: 14px;
-  line-height: 20px;  
+  line-height: 20px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -56,14 +57,14 @@ html, body, #app {
   display: block;
   margin-bottom: 12px;
   padding: 6px 8px;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
 }
-input[type=text].form-control,
-input[type=password].form-control,
+input[type="text"].form-control,
+input[type="password"].form-control,
 textarea.form-control {
   font-size: 14px;
 }
 .form-control:focus {
-  background-color: #fff;
+  background-color: white;
 }
 </style>

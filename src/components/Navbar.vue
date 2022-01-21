@@ -44,16 +44,15 @@ export default {
 <style>
 .header {
   flex: none;
-  background-color: rgba(0, 0, 0, 0.15);
   height: 32px;
   padding: 4px;
 }
 .header a {
   display: block;
+  color: white;
   height: 30px;
   line-height: 30px;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
 }
 .header-logo {
   position: absolute;

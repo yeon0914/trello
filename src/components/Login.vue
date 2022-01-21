@@ -1,7 +1,7 @@
 <template>
   <div class="login">
-    <h2>Log in to Trello</h2>
-    <form @submit.prevent="onSubmit">
+    <h2></h2>
+    <form @submit.prevent="onSubmit" class="loginform">
       <div>
         <label for="email">Email</label>
         <input class="form-control" type="text" name="email" 
@@ -12,7 +12,7 @@
         <input class="form-control" type="password" 
           v-model="password" placeholder="123123" />
       </div>
-      <button  class="btn" :class="{'btn-success': !invalidForm}" type="submit" 
+      <button  class="btn-login" :class="{'btn-success': !invalidForm}" type="submit" 
         :disabled="invalidForm">Log In</button>
     </form>
     <p class="error" v-if="error">{{error}}</p>
@@ -20,49 +20,76 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   data() {
     return {
-      email: '',
-      password: '',
-      error: '',
-      rPath: ''
-    }
+      email: "",
+      password: "",
+      error: "",
+      rPath: ""
+    };
   },
   computed: {
     invalidForm() {
-      return !this.email || !this.password
+      return !this.email || !this.password;
     }
   },
   created() {
-    this.rPath = this.$route.query.rPath || '/'
+    this.rPath = this.$route.query.rPath || "/";
   },
   methods: {
-    ...mapActions([
-      'LOGIN'
-    ]),
+    ...mapActions(["LOGIN"]),
     onSubmit() {
-      this.LOGIN({email: this.email, password: this.password})
+      this.LOGIN({ email: this.email, password: this.password })
         .then(data => {
-          this.$router.push(this.rPath)
+          this.$router.push(this.rPath);
         })
         .catch(err => {
-          this.error = err.data.error
-        })
+          this.error = err.data.error;
+        });
     }
   }
-}
+};
 </script>
 
 <style>
 .login {
   width: 400px;
-  margin: 0 auto; 
+  height: 200px;
+  padding: 50px;
+  margin: 0 auto;
+}
+.loginform {
+  padding: 30px;
+  border-radius: 30px;
+  background-color: white;
+}
+.btn-login {
+  border-radius: 3px;
+  padding: 6px 8px;
+  border: none;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  width: 200px;
+  background-color: #ffdac0;
+  color: black;
+  box-shadow: none;
 }
 .error {
   color: #f00;
 }
-
+.form-control {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px black;
+  background-color: white;
+}
 </style>

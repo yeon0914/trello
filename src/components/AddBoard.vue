@@ -14,7 +14,7 @@
       </form>
     </div>
     <div slot="footer">
-      <button class="btn" :class="{'btn-success': valid}" type="submit" 
+      <button class="btn-modal" :class="{'btn-success': valid}" type="submit" 
         form="add-board-form" :disabled="!valid">
         Create Board</button>
     </div>
@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import {mapMutations, mapActions} from 'vuex'
-import Modal from './Modal.vue'
+import { mapMutations, mapActions } from "vuex";
+import Modal from "./Modal.vue";
 
 export default {
   components: {
@@ -31,36 +31,42 @@ export default {
   },
   data() {
     return {
-      input: '',
+      input: "",
       valid: false
-    }
+    };
   },
   watch: {
     input(v) {
-      this.valid = v.trim().length > 0
+      this.valid = v.trim().length > 0;
     }
   },
   mounted() {
-    this.$refs.input.focus()
+    this.$refs.input.focus();
   },
   methods: {
-    ...mapMutations([
-      'SET_IS_ADD_BOARD'
-    ]),
-    ...mapActions([
-      'ADD_BOARD',
-      'FETCH_BOARDS'
-    ]),
+    ...mapMutations(["SET_IS_ADD_BOARD"]),
+    ...mapActions(["ADD_BOARD", "FETCH_BOARDS"]),
     addBoard() {
-      this.ADD_BOARD({title: this.input})
-        .then(({id}) => this.$router.push(`/b/${id}`))
+      this.ADD_BOARD({ title: this.input })
+        .then(({ id }) => this.$router.push(`/b/${id}`))
         .catch(err => console.error(err))
-        .finally(() => this.SET_IS_ADD_BOARD(false))
+        .finally(() => this.SET_IS_ADD_BOARD(false));
     }
   }
-}
+};
 </script>
 
 <style>
-
+.btn-modal {
+  border-radius: 3px;
+  padding: 6px 8px;
+  border: none;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #ff9f74;
+  color: white;
+}
 </style>
